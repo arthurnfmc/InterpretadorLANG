@@ -1,5 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/Bo6_M8VO)
-
 # About us
 - Arthur Negrão de Faria Martins da Costa - 21.1.4001
 - Igor Machado Cruz Guimarães Oliveira - 21.1.4012
