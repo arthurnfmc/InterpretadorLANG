@@ -1,0 +1,53 @@
+-- Arthur Negrao de Faria Martins da Costa (21.1.4001) e Igor Machado Cruz Guimaraes Oliveira (21.1.4012)
+-- Stack (list implementation)
+
+data Stack {
+    body :: Int[];
+    mSize :: Int;
+    ind :: Int;
+}
+
+emptyStack(maxSize :: Int) : @Stack {
+    s :: Stack;
+    s.body = new Int [maxSize];
+    s.mSize = maxSize;
+    s.ind = 1;
+    return s;
+}
+
+push(s :: @Stack, val :: Int) : @Stack {
+    -- check if stack is full
+    if (s.ind == s.mSize) then {skip;} else {
+        s.body@[s.ind] = val;
+        s.ind = s.ind + 1;
+    }
+    return s;
+}
+
+pop(s :: @Stack) : @Stack, Int {
+    -- check if stack is empty
+    val :: Int;
+    if (s.ind == 1) then {skip;} else {
+        val = s.body@[s.ind-1];
+        s.ind = s.ind - 1;
+        return s, val;
+    }
+}
+
+numElems(s :: @Stack) : Int {
+    return s.ind-1;
+}
+
+main() {
+    -- Stack program
+    s :: Stack; 
+    s = emptyStack(5)[0];
+    s = push(s, 7)[0];
+    s = push(s, 9)[0];
+    print s;
+    poppedVal :: Int;
+    s, poppedVal = pop(s)[0, 1];
+    print s;
+    print poppedVal;
+    print numElems(s)[0];
+}

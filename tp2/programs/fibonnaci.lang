@@ -1,0 +1,25 @@
+-- Arthur Negrao de Faria Martins da Costa (21.1.4001) e Igor Machado Cruz Guimaraes Oliveira (21.1.4012)
+-- Fibonnaci implementation
+-- 1 1 2 3 5 ...
+fibonnaci() : Int {
+    --n :: Int;
+    n = 0;
+    read n;
+    --fib1 :: Int;
+    --fib2 :: Int;
+    --aux :: Int;
+    fib1 = 0;
+    fib2 = 1;
+    iterate (n-1) {
+        aux = fib2;
+        fib2 = fib2 + fib1;
+        fib1 = aux;
+        n = n - 1;
+    }
+    print fib2;
+    return fib2;
+}
+
+main() {
+    fibonnaci();
+}

@@ -1,0 +1,14 @@
+-- Arthur Negrao de Faria Martins da Costa (21.1.4001) e Igor Machado Cruz Guimaraes Oliveira (21.1.4012)
+
+factorial(n :: Int) {
+    fact = 1;
+    iterate n {
+        fact = fact * n ;
+        n = n - 1 ;
+    }
+    return fact;
+}
+
+main() {
+    return factorial(10)[0], factorial(5)[0], factorial(0)[0];
+}

@@ -1,0 +1,12 @@
+-- Arthur Negrao de Faria Martins da Costa (21.1.4001) e Igor Machado Cruz Guimaraes Oliveira (21.1.4012)
+main() {
+    x = 5;
+
+    if (x < 10) then {print 5;}
+
+    print 5;
+
+    x = new Int [10, 10];
+    x[5, 5] = 10;
+    print x[5][5];
+}

@@ -1,0 +1,126 @@
+-- Arthur Negrao de Faria Martins da Costa (21.1.4001) e Igor Machado Cruz Guimaraes Oliveira (21.1.4012)
+-- binary tree
+
+data Tree {
+    nLeft :: @Tree;
+    nRight :: @Tree;
+    nVal :: Int;
+}
+
+emptyTree() : @Tree {
+    t :: Tree;
+    t.nLeft = null;
+    t.nRight = null;
+    t.nVal = null;
+    return t;
+}
+
+insertTree(node :: @Tree, nodeVal :: Int) : @Tree{
+    if (node.nVal == null) then {
+        node.nVal = nodeVal;
+        return node;
+    } else {
+        -- recursion to the left node
+        if (nodeVal < node.nVal) then {
+            if (node.nLeft == null) then {node.nLeft = emptyTree()[0];} else {skip;}
+            node.nLeft = insertTree(node.nLeft, nodeVal)[0];
+        -- recursion to the right node
+        } else {
+            if (node.nRight == null) then {node.nRight = emptyTree()[0];} else {skip;}
+            node.nRight = insertTree(node.nRight, nodeVal)[0];
+        }
+        return node;
+    }
+}
+
+sucessor(sNode :: @Tree) : @Tree, Int {
+    if (sNode.nLeft == null) then {
+        tmpNVal :: Int;
+        tmpNVal = sNode.nVal;
+        sNode = sNode.nRight;
+        return sNode, tmpNVal;
+    } else {
+        rtnValStore :: Int;
+        sNode.nLeft, rtnValStore = sucessor(sNode.nLeft)[0, 1];
+        return sNode, rtnValStore;
+    }
+}
+
+deleteTreeInternal(dINode :: @Tree, dIVal :: Int) : @Tree{
+    if (dINode.nVal == null) then {return emptyTree()[0];} else {
+        if (dINode.nVal == dIVal) then {
+            -- found element, going to remove it
+            if ((dINode.nRight == null) && (dINode.nLeft == null)) then {
+                return emptyTree()[0];
+            } else {
+                if ((dINode.nLeft != null) && (dINode.nRight == null)) then {
+                    return dINode.nLeft;
+                } else {
+                    if ((dINode.nLeft == null) && (dINode.nRight != null)) then {
+                        return dINode.nRight;
+                    } else {
+                        -- sucessor case
+                        substVal :: Int;
+                        dINode.nRight, substVal = sucessor(dINode.nRight)[0, 1];
+                        dINode.nVal = substVal;
+                        return dINode;
+                    }
+                }
+            }
+        } else {
+            --element not found, going recursive ...
+            if (dIVal < dINode.nVal) then {
+                -- left
+                dINode.nLeft = deleteTreeInternal(dINode.nLeft)[0];
+                return dINode;
+            } else {
+                -- right
+                dINode.nRight = deleteTreeInternal(dINode.nRight)[0];
+                return dINode;
+            }
+        }
+    }
+}
+
+deleteTree(dNode :: @Tree, dVal :: Int) : @Tree, Bool {
+   if (!(searchTree(dNode, dVal)[0])) then {return dNode, false;} else {
+        return deleteTreeInternal(dNode, dVal)[0], true;
+   }
+}
+
+printTree(pTree :: @Tree) {
+    if (pTree.nVal == null) then {skip;} else {
+        print pTree.nVal;
+        print 'L'; -- Printing 'L' or 'R' to make easier to visualize either we're going to the left or right node
+        printTree(pTree.nLeft);
+        print 'R';
+        printTree(pTree.nRight);
+    }
+}
+
+-- check if the val is present in the tree
+searchTree(sTree :: @Tree, sVal :: Int) : Bool {
+    if (sTree.nVal == null) then {return false;} else {
+        if (sTree.nVal == sVal) then {return true;} else {
+            return !((!searchTree(sTree.nLeft, sVal)[0]) && (!searchTree(sTree.nRight, sVal)[0]));
+        }
+    }
+}
+
+main() {
+    t1 :: Tree;
+    t1 = emptyTree()[0];
+    t1 = insertTree(t1, 8)[0];
+    t1 = insertTree(t1, 7)[0];
+    t1 = insertTree(t1, 6)[0];
+    t1 = insertTree(t1, 9)[0];
+    printTree(t1);
+    print '\n';
+    print searchTree(t1, 11)[0];
+    print searchTree(t1, 6)[0];
+    deleted :: Bool;
+    deleteTree(t1, 8)<t1,deleted>;
+    printTree(t1);
+    print '\n';
+    print deleted;
+}

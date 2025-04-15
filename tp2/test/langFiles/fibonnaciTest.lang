@@ -1,0 +1,17 @@
+-- Arthur Negrao de Faria Martins da Costa (21.1.4001) e Igor Machado Cruz Guimaraes Oliveira (21.1.4012)
+
+fibonnaci(n :: Int) : Int {
+    fib1 = 0;
+    fib2 = 1;
+    iterate (n-1) {
+        aux = fib2;
+        fib2 = fib2 + fib1;
+        fib1 = aux;
+        n = n - 1;
+    }
+    return fib2;
+}
+
+main() {
+    return fibonnaci(13)[0], fibonnaci(7)[0], fibonnaci(4)[0];
+}

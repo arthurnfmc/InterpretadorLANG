@@ -1,0 +1,1 @@
+[EBool False,EBool True,EUserValue (fromList [(Var {unVar = "nLeft"},EUserValue (fromList [(Var {unVar = "nLeft"},EUserValue (fromList [(Var {unVar = "nLeft"},ENull),(Var {unVar = "nRight"},ENull),(Var {unVar = "nVal"},EInt 6)])),(Var {unVar = "nRight"},ENull),(Var {unVar = "nVal"},EInt 7)])),(Var {unVar = "nRight"},ENull),(Var {unVar = "nVal"},EInt 9)])]

@@ -1,0 +1,18 @@
+-- Arthur Negrao de Faria Martins da Costa (21.1.4001) e Igor Machado Cruz Guimaraes Oliveira (21.1.4012)
+-- Factorial implementation
+factorial() {
+    --n :: Int;
+    --fact :: Int;    
+    n = 0;
+    read n ;
+    fact = 1;
+    iterate n {
+        fact = fact * n ;
+        n = n - 1 ;
+    }
+    print fact ;
+}
+
+main() {
+    factorial();
+}

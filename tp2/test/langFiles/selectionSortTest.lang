@@ -1,0 +1,32 @@
+-- Arthur Negrao de Faria Martins da Costa (21.1.4001) e Igor Machado Cruz Guimaraes Oliveira (21.1.4012)
+
+selectionSort(num :: Int[], tam :: Int) : Int[] {
+    i = 1;
+    iterate tam {
+        min = i; 
+        j = i+1;
+        iterate (tam-i) {
+            if (num[j] < num[min]) then {min=j;} else {skip;}
+            j = j+1;
+        }
+        if (i != min) then {
+            aux = num[i];
+            num[i] = num[min];
+            num[min] = aux;
+        } else {skip;}
+        i = i + 1;
+    }
+    return num;
+}
+
+main() {
+    x = new Int [10];
+    x[1] = 66;
+    x[2] = 22;
+    x[3] = 6;
+    x[4] = 18;
+    x[7] = 21;
+    x[8] = 777;
+    y = selectionSort(x, 10)[0];
+    return x, y;
+}
